@@ -1,0 +1,208 @@
+<!-- Register Page -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PenCode - Register</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #1a1b26;
+        color: #a9b1d6;
+      }
+
+      .navbar {
+        background-color: #24283b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+      }
+
+      .logo a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #7aa2f7;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        color: #a9b1d6;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #7aa2f7;
+      }
+
+      .nav-links .home-btn {
+        background-color: #7aa2f7;
+        color: #1a1b26;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-links .home-btn:hover {
+        background-color: #5d7dcc;
+        color: #ffffff;
+      }
+
+      .auth-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 300px);
+        padding: 2rem;
+      }
+
+      .auth-form {
+        width: 100%;
+        max-width: 400px;
+        padding: 2rem;
+        background-color: #24283b;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .auth-form h2 {
+        margin-bottom: 1.5rem;
+        color: #7aa2f7;
+      }
+
+      .auth-form input {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        background-color: #1a1b26;
+        border: 1px solid #414868;
+        border-radius: 4px;
+        color: #a9b1d6;
+      }
+
+      .auth-form input::placeholder {
+        color: #565f89;
+      }
+
+      .auth-form button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #7aa2f7;
+        color: #1a1b26;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .auth-form button:hover {
+        background-color: #5d7dcc;
+        color: #ffffff;
+      }
+
+      .auth-form p {
+        margin-top: 1rem;
+        color: #a9b1d6;
+      }
+
+      .auth-form a {
+        color: #7aa2f7;
+        text-decoration: none;
+      }
+
+      .footer {
+        background-color: #24283b;
+        color: #a9b1d6;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .footer p {
+        margin-bottom: 1rem;
+      }
+
+      .footer a {
+        color: #7aa2f7;
+        text-decoration: none;
+        margin: 0 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .footer a:hover {
+        color: #5d7dcc;
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          padding: 1rem;
+        }
+
+        .nav-links {
+          margin-top: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <div class="logo">
+          <a href="/">PenCode</a>
+        </div>
+        <div class="nav-links">
+          <a href="{% url 'home' %}" class="home-btn">Home</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="auth-container">
+      <div class="auth-form">
+        <h2>Register on PenCode</h2>
+        <form method="POST" id="register-form">
+          {% csrf_token %}
+          <input type="text" name="username" placeholder="Username" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input
+            type="password"
+            name="password1"
+            placeholder="Password"
+            required
+          />
+          <input
+            type="password"
+            name="password2"
+            placeholder="Confirm Password"
+            required
+          />
+          <button type="submit">Sign Up</button>
+          <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </form>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2024 PenCode. All rights reserved.</p>
+    </div>
+  </body>
+</html>

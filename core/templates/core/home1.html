@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PenCode</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #1a1b26;
+        color: #a9b1d6;
+      }
+
+      .navbar {
+        background-color: #24283b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .logo a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #7aa2f7;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        color: #a9b1d6;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #7aa2f7;
+      }
+
+      .nav-links .workspace-btn {
+        background-color: #7aa2f7;
+        color: #1a1b26;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-links .workspace-btn:hover {
+        background-color: #5d7dcc;
+        color: #ffffff;
+      }
+
+      .nav-links .logout-btn {
+        background-color: #f7768e;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-links .logout-btn:hover {
+        background-color: #cc6178;
+      }
+
+      .hero {
+        padding: 4rem 2rem;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        color: #ffffff;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: #a9b1d6;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .feature {
+        background-color: #24283b;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .feature h3 {
+        color: #7aa2f7;
+        margin-bottom: 1rem;
+      }
+
+      .feature p {
+        color: #a9b1d6;
+      }
+
+      .footer {
+        background-color: #24283b;
+        color: #a9b1d6;
+        padding: 2rem;
+        text-align: center;
+        margin-top: 4rem;
+      }
+
+      .footer-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+      }
+
+      .footer-section h4 {
+        color: #7aa2f7;
+        margin-bottom: 1rem;
+      }
+
+      .footer-section a {
+        display: block;
+        color: #a9b1d6;
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: #7aa2f7;
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          padding: 1rem;
+        }
+
+        .nav-links {
+          margin-top: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .features {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/">PenCode</a>
+      </div>
+      <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'group-list' %}" class="workspace-btn">Workspaces</a>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1>Welcome to PenCode</h1>
+      <p>Your Collaborative Code Editor for Seamless Development</p>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <h3>Real-time Collaboration</h3>
+        <p>
+          Code together with your team in real-time, with instant updates and
+          synchronization.
+        </p>
+      </div>
+      <div class="feature">
+        <h3>Multiple Language Support</h3>
+        <p>
+          Write and execute code in various programming languages directly in
+          your browser.
+        </p>
+      </div>
+      <div class="feature">
+        <h3>Secure Workspaces</h3>
+        <p>
+          Create private workspaces for your team and manage access with ease.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>Product</h4>
+          <a href="{% url 'group-list' %}">Workspaces</a>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <a href="/">Documentation</a>
+        </div>
+      </div>
+      <p>&copy; 2024 PenCode. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

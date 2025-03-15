@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Django-related
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+*.log
+
+# Django secret key file (if stored separately)
+.env
+
+# Migrations (optional, keep if you want to track migrations)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Python virtual environments
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Node modules (if using frontend in the same repo)
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# Compiled files
+*.so
+*.out
+*.rej
+*.swp
+
+# Docker
+docker-compose.override.yml

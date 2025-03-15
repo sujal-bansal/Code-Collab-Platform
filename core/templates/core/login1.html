@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PenCode - Login</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #1a1b26;
+        color: #a9b1d6;
+        line-height: 1.6;
+      }
+
+      .navbar {
+        background-color: #24283b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .logo a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #7aa2f7;
+        text-decoration: none;
+      }
+
+      .nav-links a {
+        margin-left: 1.5rem;
+        color: #a9b1d6;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #7aa2f7;
+      }
+
+      .auth-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 200px);
+        padding: 2rem;
+      }
+
+      .auth-form {
+        width: 100%;
+        max-width: 400px;
+        padding: 2.5rem;
+        background-color: #24283b;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      .auth-form h2 {
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+        font-size: 1.75rem;
+        font-weight: 600;
+      }
+
+      .auth-form input {
+        width: 100%;
+        padding: 0.875rem;
+        margin-bottom: 1rem;
+        background-color: #1a1b26;
+        border: 1px solid #414868;
+        border-radius: 6px;
+        color: #ffffff;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .auth-form input:focus {
+        outline: none;
+        border-color: #7aa2f7;
+      }
+
+      .auth-form input::placeholder {
+        color: #565f89;
+      }
+
+      .auth-form button {
+        width: 100%;
+        padding: 0.875rem;
+        background-color: #7aa2f7;
+        color: #1a1b26;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .auth-form button:hover {
+        background-color: #5d7dcc;
+      }
+
+      .auth-form p {
+        margin-top: 1.5rem;
+        color: #a9b1d6;
+      }
+
+      .auth-form a {
+        color: #7aa2f7;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .auth-form a:hover {
+        color: #5d7dcc;
+      }
+
+      .footer {
+        background-color: #24283b;
+        color: #a9b1d6;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .footer-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+      }
+
+      .footer-section h4 {
+        color: #7aa2f7;
+        margin-bottom: 1rem;
+      }
+
+      .footer-section a {
+        display: block;
+        color: #a9b1d6;
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: #7aa2f7;
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          padding: 1rem;
+        }
+
+        .nav-links {
+          margin-top: 1rem;
+        }
+
+        .auth-form {
+          padding: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/">PenCode</a>
+      </div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+      </div>
+    </nav>
+
+    <div class="auth-container">
+      <div class="auth-form">
+        <h2>Login to PenCode</h2>
+        <form method="POST" id="login-form">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+          <button type="submit">Login</button>
+          <p>
+            Don't have an account? <a href="{% url 'register' %}">Sign up</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>Product</h4>
+          <a href="/">Overview</a>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <a href="/">Documentation</a>
+        </div>
+      </div>
+      <p>&copy; 2024 PenCode. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

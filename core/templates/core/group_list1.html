@@ -1,0 +1,215 @@
+<!-- Group List Page -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PenCode - Group List</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #1a1b26;
+        color: #a9b1d6;
+      }
+
+      .navbar {
+        background-color: #24283b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+      }
+
+      .logo a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #7aa2f7;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        color: #a9b1d6;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links .home-btn {
+        background-color: #7aa2f7;
+        color: #1a1b26;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-links .logout-btn {
+        background-color: #f7768e;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-links .home-btn:hover {
+        background-color: #5d7dcc;
+        color: #ffffff;
+      }
+
+      .nav-links .logout-btn:hover {
+        background-color: #cc6178;
+      }
+
+      .auth-container {
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .auth-form {
+        background-color: #24283b;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .auth-form h2 {
+        color: #7aa2f7;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+      }
+
+      .auth-form form {
+        margin-bottom: 2rem;
+      }
+
+      .auth-form button {
+        background-color: #7aa2f7;
+        color: #1a1b26;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .auth-form button:hover {
+        background-color: #5d7dcc;
+        color: #ffffff;
+      }
+
+      .group-list {
+        margin-top: 2rem;
+      }
+
+      .group-list h3 {
+        color: #7aa2f7;
+        margin-bottom: 1rem;
+      }
+
+      .group-list ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .group-list li {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+        background-color: #1a1b26;
+        border: 1px solid #414868;
+        border-radius: 4px;
+      }
+
+      .group-list a {
+        color: #7aa2f7;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .group-list a:hover {
+        color: #5d7dcc;
+      }
+
+      .footer {
+        background-color: #24283b;
+        color: #a9b1d6;
+        padding: 2rem;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .footer p {
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .nav-links {
+          margin-top: 1rem;
+        }
+
+        .auth-container {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <div class="logo">
+          <a href="/">PenCode</a>
+        </div>
+        <div class="nav-links">
+          <a href="{% url 'home' %}" class="home-btn">Home</a>
+          <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="auth-container">
+      <div class="auth-form">
+        <h2>Group List</h2>
+
+        <form method="POST">
+          {% csrf_token %} {{ form.as_p }}
+          <button type="submit">Create Group</button>
+        </form>
+
+        <div class="group-list">
+          <h3>Existing Groups</h3>
+          <ul>
+            {% for group in groups %}
+            <li>
+              <a href="{% url 'group_view' group_name=group.name %}"
+                >{{ group.name }}</a
+              >
+            </li>
+            {% empty %}
+            <p>No groups available.</p>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2024 PenCode. All rights reserved.</p>
+    </div>
+  </body>
+</html>
