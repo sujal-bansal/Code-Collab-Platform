@@ -45,3 +45,4 @@ package-lock.json
 
 # Docker
 docker-compose.override.yml
+core/consumers.py
