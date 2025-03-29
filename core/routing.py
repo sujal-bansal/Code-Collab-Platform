@@ -6,3 +6,5 @@ websocket_urlpatterns = [
     # path("ws/code/<str:group_name>/", consumers.CodeConsumer.as_asgi() )
     path("ws/code/<str:group_name>/", consumers1.CodeConsumer.as_asgi() )
 ]
+
+

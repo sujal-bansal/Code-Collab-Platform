@@ -200,7 +200,6 @@
     </style>
   </head>
   <body>
-    <!-- Previous HTML structure remains exactly the same until the scripts -->
     <nav class="navbar">
       <div class="logo">
         <a href="{% url 'home' %}">PenCode</a>
@@ -365,7 +364,6 @@
         });
       }
 
-      // Previous event listeners remain the same
       editor.on("change", function () {
         const code = editor.getValue();
         if (latestCode !== code) {
