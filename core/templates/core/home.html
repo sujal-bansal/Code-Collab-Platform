@@ -26,271 +26,6 @@
         line-height: 1.6;
       }
 
-      /* Navbar */
-      .navbar {
-        background-color: #1e2132;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 2rem;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        backdrop-filter: blur(10px);
-      }
-
-      .logo a {
-        font-size: 1.7rem;
-        font-weight: 700;
-        color: #7aa2f7;
-        text-decoration: none;
-      }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-      }
-
-      .nav-links a {
-        color: #a9b1d6;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s ease, transform 0.3s ease;
-      }
-
-      .nav-links a:hover {
-        color: #7aa2f7;
-        transform: translateY(-2px);
-      }
-
-      /* Hero Section */
-      .hero {
-        padding: 6rem 2rem;
-        text-align: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 10;
-      }
-
-      .hero h1 {
-        font-size: 4.5rem;
-        color: #ffffff;
-        margin-bottom: 1.5rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        font-weight: 900;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-        position: relative;
-        display: inline-block;
-        min-height: 5.5rem; /* Added fixed minimum height */
-        line-height: 1.2; /* Added to ensure proper text alignment */
-      }
-
-      .hero p {
-        font-size: 1.4rem;
-        margin-bottom: 2rem;
-        color: #a9b1d6;
-        line-height: 1.7;
-      }
-
-      .hero .cta-btn {
-        position: relative;
-        font-family: inherit;
-        font-weight: 500;
-        font-size: 18px;
-        letter-spacing: 0.05em;
-        border-radius: 0.8em;
-        cursor: pointer;
-        border: none;
-        background: linear-gradient(90deg, #7aa2f7, #5d7dcc);
-        color: ghostwhite;
-        overflow: hidden;
-      }
-
-      .hero .cta-btn svg {
-        width: 1.2em;
-        height: 1.2em;
-        margin-right: 0.5em;
-      }
-
-      .hero .cta-btn span {
-        position: relative;
-        z-index: 10;
-        transition: color 0.4s;
-        display: inline-flex;
-        align-items: center;
-        padding: 0.8em 1.2em 0.8em 1.05em;
-      }
-
-      .hero .cta-btn::before,
-      .hero .cta-btn::after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-      }
-
-      .hero .cta-btn::before {
-        content: "";
-        background: linear-gradient(90deg, #5d7dcc, #283afa);
-        width: 120%;
-        left: -10%;
-        transform: skew(30deg);
-        transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
-      }
-
-      .hero .cta-btn:hover::before {
-        transform: translate3d(100%, 0, 0);
-      }
-
-      .hero .cta-btn:active {
-        transform: scale(0.95);
-      }
-
-      /* Features Section */
-      .features {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        padding: 3rem 2rem;
-        max-width: 1200px;
-        margin: 2rem auto;
-        position: relative;
-        z-index: 10;
-      }
-
-      .feature {
-        background-color: #1e2132;
-        padding: 2rem;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .feature:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-      }
-
-      .feature h3 {
-        color: #7aa2f7;
-        margin-bottom: 1rem;
-        font-size: 1.6rem;
-      }
-
-      .feature p {
-        color: #a9b1d6;
-        font-size: 1rem;
-      }
-
-      /* Footer Styles */
-      .footer {
-        background-color: #1e2132;
-        color: #a9b1d6;
-        padding: 2rem 1rem;
-        text-align: center;
-        position: relative;
-        margin-top: 3rem;
-      }
-
-      .footer p {
-        font-size: 0.9rem;
-        margin: 0;
-      }
-
-      .footer a {
-        color: #7aa2f7;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.3s ease;
-      }
-
-      .footer a:hover {
-        color: #a9b1d6;
-      }
-
-      /* Three.js Canvas Styles (Fixed to Background) */
-      #three-canvas-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.35;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 1024px) {
-        .hero h1 {
-          font-size: 3.5rem;
-        }
-
-        .hero p {
-          font-size: 1.2rem;
-        }
-
-        .hero .cta-btn {
-          font-size: 1.2rem;
-          padding: 0.7rem 1.2rem;
-        }
-
-        .features {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
-
-        .feature h3 {
-          font-size: 1.3rem;
-        }
-
-        .feature p {
-          font-size: 0.95rem;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .navbar {
-          padding: 1rem;
-        }
-
-        .hero h1 {
-          font-size: 2.8rem;
-        }
-
-        .hero p {
-          font-size: 1.1rem;
-        }
-
-        .hero .cta-btn {
-          font-size: 1rem;
-          padding: 0.8rem 1.5rem;
-        }
-
-        .footer p {
-          font-size: 0.8rem;
-        }
-      }
-
-      /* General Page Styles */
-      body {
-        font-family: "Inter", sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #121420;
-        color: #cdd6f4;
-        overflow-x: hidden;
-        height: 100vh;
-        position: relative;
-        line-height: 1.6;
-      }
-
       /* Enhanced Navbar Styles */
       .navbar {
         background: rgba(30, 33, 50, 0.8);
@@ -401,6 +136,8 @@
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         position: relative;
         display: inline-block;
+        min-height: 5.5rem;
+        line-height: 1.2;
       }
 
       .hero h1::after {
@@ -456,8 +193,6 @@
         overflow: hidden;
         padding: 1em 2em;
         transition: all 0.3s ease;
-        transform-style: preserve-3d;
-        perspective: 1000px;
       }
 
       .hero .cta-btn::before {
@@ -514,7 +249,6 @@
         z-index: 10;
         display: inline-flex;
         align-items: center;
-        transition: transform 0.3s ease;
       }
 
       /* Enhanced Feature Cards */
@@ -636,6 +370,77 @@
       .feature-link:hover i {
         transform: translateX(3px);
       }
+
+      /* Three.js Canvas Styles */
+      #three-canvas-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.35;
+      }
+
+      /* Footer Styles */
+      .footer {
+        background-color: #1e2132;
+        color: #a9b1d6;
+        padding: 2rem 1rem;
+        text-align: center;
+        position: relative;
+        margin-top: 3rem;
+      }
+
+      .footer p {
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .footer a {
+        color: #7aa2f7;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      .footer a:hover {
+        color: #a9b1d6;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .hero h1 {
+          font-size: 3.5rem;
+        }
+
+        .hero p {
+          font-size: 1.2rem;
+        }
+
+        .features {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .feature h3 {
+          font-size: 1.3rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -654,7 +459,6 @@
 
     <section class="hero">
       <h1><span id="typed-text">&nbsp;</span></h1>
-      <!-- Added non-breaking space -->
       <p>Your Collaborative Code Editor for Seamless Development</p>
       <a href="{% url 'group-list' %}">
         <button class="cta-btn">
@@ -734,7 +538,7 @@
 
       function loop() {
         isEnd = false;
-        typedText.textContent = currentPhrase.join("") || "\u00A0"; // Added non-breaking space as fallback
+        typedText.textContent = currentPhrase.join("") || "\u00A0";
 
         if (i < phrases.length) {
           if (!isDeleting && j <= phrases[i].length) {
@@ -746,7 +550,7 @@
           if (isDeleting && j <= phrases[i].length) {
             currentPhrase.pop(phrases[i][j]);
             j--;
-            typedText.textContent = currentPhrase.join("") || "\u00A0"; // Added non-breaking space as fallback
+            typedText.textContent = currentPhrase.join("") || "\u00A0";
           }
 
           if (j === phrases[i].length) {
@@ -785,12 +589,9 @@
       // Create particles (single color)
       const particles = [];
       const particleCount = 500;
-
       const particleColor = 0x7aa2f7; // Blue color for particles
-
-      // Maximum velocity and force constants
-      const maxVelocity = 0.01; // Limit to max velocity
-      const maxForce = 0.008; // Limit to max force applied on particle when bouncing
+      const maxVelocity = 0.01;
+      const maxForce = 0.008;
 
       for (let i = 0; i < particleCount; i++) {
         const geometry = new THREE.SphereGeometry(0.1, 8, 8);
@@ -805,7 +606,6 @@
         particle.position.y = Math.random() * 10 - 5;
         particle.position.z = Math.random() * 10 - 5;
 
-        // Add more random velocity to create more movement
         particle.velocity = new THREE.Vector3(
           (Math.random() - 0.5) * 0.1,
           (Math.random() - 0.5) * 0.1,
@@ -822,44 +622,33 @@
         requestAnimationFrame(animate);
 
         particles.forEach((particle) => {
-          // Update position based on velocity
           particle.position.add(particle.velocity);
-
-          // Apply rotation
           particle.rotation.y += 0.01;
 
-          // Boundary detection and velocity capping
           if (Math.abs(particle.position.x) > 5) {
-            // Reverse velocity and apply force
             particle.velocity.x *= -1;
             applyMaxForce(particle, "x");
           }
           if (Math.abs(particle.position.y) > 5) {
-            // Reverse velocity and apply force
             particle.velocity.y *= -1;
             applyMaxForce(particle, "y");
           }
           if (Math.abs(particle.position.z) > 5) {
-            // Reverse velocity and apply force
             particle.velocity.z *= -1;
             applyMaxForce(particle, "z");
           }
 
-          // Cap the velocity to the maximum allowed
           particle.velocity.clampLength(-maxVelocity, maxVelocity);
         });
 
         renderer.render(scene, camera);
       }
 
-      // Function to apply maximum force after boundary hit
       function applyMaxForce(particle, axis) {
         if (Math.abs(particle.velocity[axis]) > maxVelocity) {
-          // Clamp velocity component to max value
           particle.velocity[axis] =
             Math.sign(particle.velocity[axis]) * maxVelocity;
         }
-        // Optional: You could apply additional random variations here if you'd like
       }
 
       animate();

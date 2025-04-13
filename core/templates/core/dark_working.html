@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Previous head content remains the same until the end of style tag -->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +12,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/dracula.min.css"
     />
-    <!-- Previous styles remain exactly the same -->
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 
@@ -186,7 +184,6 @@
         .main-container {
           flex-direction: column;
         }
-
         .online-users-sidebar {
           width: auto;
         }
@@ -242,21 +239,15 @@
       </div>
     </div>
 
-    <!-- CodeMirror Scripts remain the same -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/css/css.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
-    <!-- Add Axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
 
     {{ group_name|json_script:"group-name" }}
 
     <script>
-      // Language versions mapping
       const LANGUAGE_VERSIONS = {
         javascript: "18.15.0",
         python: "3.10.0",
@@ -265,22 +256,16 @@
         cpp: "10.2.0",
       };
 
-      // API setup
       const API = axios.create({
         baseURL: "https://emkc.org/api/v2/piston",
       });
 
-      // Function to execute code via API
       async function executeCodeViaAPI(language, sourceCode) {
         try {
           const response = await API.post("/execute", {
             language: language,
             version: LANGUAGE_VERSIONS[language],
-            files: [
-              {
-                content: sourceCode,
-              },
-            ],
+            files: [{ content: sourceCode }],
           });
           return response.data;
         } catch (error) {
@@ -294,7 +279,6 @@
         }
       }
 
-      // Previous WebSocket setup remains the same
       const groupName = JSON.parse(
         document.getElementById("group-name").textContent
       );
@@ -312,17 +296,14 @@
 
       let latestCode = initialCode;
 
-      // Modified execute code function to handle both JavaScript and other languages
       async function executeCode(code) {
         const outputArea = document.getElementById("output-area");
         outputArea.innerHTML = "Running...";
-
         const currentLanguage =
           document.getElementById("language-selector").value;
 
         try {
           if (currentLanguage === "javascript") {
-            // Execute JavaScript locally
             outputArea.innerHTML = "";
             const originalConsoleLog = console.log;
             console.log = function (message) {
@@ -334,22 +315,16 @@
             }
             console.log = originalConsoleLog;
           } else {
-            // Execute other languages via API
             const result = await executeCodeViaAPI(currentLanguage, code);
-            outputArea.innerHTML = "";
-
-            if (result.run.stderr) {
-              outputArea.innerHTML += `Error:\n${result.run.stderr}`;
-            } else {
-              outputArea.innerHTML += result.run.output;
-            }
+            outputArea.innerHTML = result.run.stderr
+              ? `Error:\n${result.run.stderr}`
+              : result.run.output;
           }
         } catch (error) {
           outputArea.innerHTML = `Error: ${error.message}`;
         }
       }
 
-      // Previous functions remain the same
       function updateOnlineUsersList(users) {
         const usersList = document.getElementById("online-users-list");
         usersList.innerHTML = "";
@@ -375,13 +350,10 @@
       document
         .getElementById("execute-button")
         .addEventListener("click", function () {
-          const code = editor.getValue();
-          executeCode(code);
+          executeCode(editor.getValue());
         });
 
-      socket.onopen = function () {
-        console.log("WebSocket connected");
-      };
+      socket.onopen = () => console.log("WebSocket connected");
 
       socket.onmessage = function (event) {
         const data = JSON.parse(event.data);
@@ -393,19 +365,13 @@
         }
       };
 
-      socket.onclose = function () {
-        console.log("WebSocket disconnected");
-      };
-
-      socket.onerror = function (err) {
-        console.log("WebSocket error:", err);
-      };
+      socket.onclose = () => console.log("WebSocket disconnected");
+      socket.onerror = (err) => console.log("WebSocket error:", err);
 
       document
         .getElementById("language-selector")
         .addEventListener("change", function () {
-          const selectedMode = this.value;
-          editor.setOption("mode", selectedMode);
+          editor.setOption("mode", this.value);
           editor.refresh();
         });
     </script>

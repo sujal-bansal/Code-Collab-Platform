@@ -76,7 +76,7 @@ def logout_view(request):
 def homepage(request):
     
     return render(request, 'core/home.html')
-    # return render(request, 'core/home1.html')
+    # return render(request, 'core/home2.html')
 
 @login_required
 def group_list(request):
