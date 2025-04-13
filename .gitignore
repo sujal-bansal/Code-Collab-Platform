@@ -46,3 +46,6 @@ package-lock.json
 # Docker
 docker-compose.override.yml
 core/consumers.py
+core/templates/core/working.html
+core/templates/core/dark.html
+core/templates/core/home1.html

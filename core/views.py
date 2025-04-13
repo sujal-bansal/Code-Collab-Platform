@@ -92,7 +92,3 @@ def group_list(request):
 
     # return render(request, 'core/group_list.html', {'form': form, "groups" : groups})
     return render(request, 'core/group_list1.html', {'form': form, "groups" : groups})
-
-
-
-
