@@ -33,8 +33,8 @@ PenCode is a real-time collaborative code editor built with Django and WebSocket
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/pencode.git
-cd pencode
+git clone https://github.com/sujal-bansal/Code-Collab-Platform.git
+cd Code-Collab-Platform
 ```
 
 2. Create and activate a virtual environment:
