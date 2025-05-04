@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PenCode - Edit Profile</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #1a1b26;
+        color: #a9b1d6;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #24283b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .logo a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #7aa2f7;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        color: #a9b1d6;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #7aa2f7;
+      }
+
+      .profile-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #24283b;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-container h2 {
+        color: #7aa2f7;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        border-bottom: 2px solid #1a1b26;
+        padding-bottom: 0.5rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      form p {
+        margin-bottom: 1rem;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #a9b1d6;
+        font-weight: 500;
+      }
+
+      form input[type="text"],
+      form input[type="url"],
+      form input[type="file"],
+      form textarea,
+      form select {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #1a1b26;
+        border: 1px solid #414868;
+        border-radius: 4px;
+        color: #a9b1d6;
+        font-family: "Inter", sans-serif;
+      }
+
+      form input[type="file"] {
+        padding: 0.5rem;
+      }
+
+      form textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      form input:focus,
+      form textarea:focus,
+      form select:focus {
+        outline: none;
+        border-color: #7aa2f7;
+      }
+
+      button[type="submit"] {
+        background-color: #7aa2f7;
+        color: #1a1b26;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        margin-top: 1rem;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #5d7dcc;
+        color: #ffffff;
+      }
+
+      .footer {
+        background-color: #24283b;
+        color: #a9b1d6;
+        padding: 2rem;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .footer p {
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .profile-container {
+          padding: 1.5rem;
+          margin: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/">PenCode</a>
+      </div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/groups/">Workspaces</a>
+        <a href="/logout/">Logout</a>
+      </div>
+    </nav>
+
+    <div class="profile-container">
+      <h2>Edit Your Profile</h2>
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2024 PenCode. All rights reserved.</p>
+    </div>
+  </body>
+</html>

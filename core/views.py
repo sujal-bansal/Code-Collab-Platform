@@ -1,8 +1,37 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .models import Group, Code
 from .forms import RegisterForm, LoginForm, GroupForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .forms import UserProfileForm
+from django.contrib.auth.models import User
+
+@login_required
+def profile_view(request, username=None):
+    if username:
+        profile_user = get_object_or_404(User, username=username)
+    else:
+        profile_user = request.user
+
+    groups = Group.objects.all()
+    
+    return render(request, 'core/profile.html', {
+        'profile_user': profile_user,
+        'groups': groups
+    })
+    
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile_view')
+    else:
+        form = UserProfileForm(instance=request.user.profile)
+    
+    return render(request, 'core/edit_profile.html', {'form': form})
 
 
 def register(request):
