@@ -18,8 +18,8 @@ def register(request):
 
             return redirect('login')
         
-    # return render(request, 'core/register.html', {'form': form})
     return render(request, 'core/register1.html', {'form': form})
+    # return render(request, 'core/register.html', {'form': form})
 
 
 def login_view(request):

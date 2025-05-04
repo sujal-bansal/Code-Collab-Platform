@@ -8,7 +8,7 @@ online_users = {}
 class CodeConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.group_name = self.scope['url_route']['kwargs']['group_name']
-        self.username = self.scope['user'].username  # Assumes user is authenticated
+        self.username = self.scope['user'].username  
 
         self.group = await self.get_group(self.group_name)
         
