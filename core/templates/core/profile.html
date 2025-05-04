@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PenCode - User Profile</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #1a1b26;
+        color: #a9b1d6;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #24283b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .logo a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #7aa2f7;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        color: #a9b1d6;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #7aa2f7;
+      }
+
+      .page-container {
+        display: flex;
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+        gap: 2rem;
+      }
+
+      .profile-container {
+        flex: 1;
+        background-color: #24283b;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+      }
+
+      .repository-container {
+        flex: 1;
+        background-color: #24283b;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+      }
+
+      .profile-container h2,
+      .repository-container h2 {
+        color: #7aa2f7;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        font-weight: 600;
+        border-bottom: 2px solid #1a1b26;
+        padding-bottom: 0.5rem;
+      }
+
+      .profile-image {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .profile-image img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #7aa2f7;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .profile-details {
+        background-color: #1a1b26;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+      }
+
+      .profile-details p {
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+
+      .profile-details p:last-child {
+        margin-bottom: 0;
+      }
+
+      .profile-details strong {
+        color: #7aa2f7;
+        font-weight: 600;
+      }
+
+      .profile-details a {
+        color: #bb9af7;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .profile-details a:hover {
+        color: #7aa2f7;
+        text-decoration: underline;
+      }
+
+      .profile-actions {
+        margin-top: 1.5rem;
+        text-align: center;
+      }
+
+      .profile-actions a {
+        display: inline-block;
+        background-color: #7aa2f7;
+        color: #1a1b26;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .profile-actions a:hover {
+        background-color: #5d7dcc;
+        color: #ffffff;
+      }
+
+      /* Repository Section Styles */
+      .repositories {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .repo-card {
+        background-color: #1a1b26;
+        border-radius: 8px;
+        padding: 1.25rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #2c2e3e;
+      }
+
+      .repo-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        border-color: #7aa2f7;
+      }
+
+      .repo-name {
+        color: #7aa2f7;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .repo-name svg {
+        margin-right: 0.5rem;
+      }
+
+      .repo-info {
+        font-size: 0.9rem;
+        color: #a9b1d6;
+        margin-bottom: 1rem;
+      }
+
+      .repo-card a {
+        display: inline-block;
+        background-color: #414868;
+        color: #c0caf5;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        text-align: center;
+      }
+
+      .repo-card a:hover {
+        background-color: #7aa2f7;
+        color: #1a1b26;
+      }
+
+      .repo-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.8rem;
+        color: #565f89;
+        margin-bottom: 1rem;
+      }
+
+      .repo-meta-item {
+        display: flex;
+        align-items: center;
+      }
+
+      .repo-meta-item svg {
+        margin-right: 0.25rem;
+      }
+
+      .no-repos {
+        background-color: #1a1b26;
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        color: #565f89;
+      }
+
+      .footer {
+        background-color: #24283b;
+        color: #a9b1d6;
+        padding: 2rem;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .footer p {
+        margin: 0;
+      }
+
+      @media (max-width: 992px) {
+        .page-container {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .page-container {
+          padding: 0 1rem;
+        }
+
+        .profile-container,
+        .repository-container {
+          padding: 1.5rem;
+        }
+
+        .profile-image img {
+          width: 120px;
+          height: 120px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/">PenCode</a>
+      </div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/group_list/">Workspaces</a>
+        <a href="/logout/">Logout</a>
+      </div>
+    </nav>
+
+    <div class="page-container">
+      <!-- Profile Section (Left) -->
+      <div class="profile-container">
+        <h2>{{ profile_user.username }}'s Profile</h2>
+
+        <div class="profile-image">
+          <img
+            src="{% if profile_user.profile.avatar %}{{ profile_user.profile.avatar.url }}{% else %}/api/placeholder/150/150{% endif %}"
+            alt="Profile Image"
+          />
+        </div>
+
+        <div class="profile-details">
+          <p>
+            <strong>Bio:</strong> {{ profile_user.profile.bio|default:"No bio
+            provided" }}
+          </p>
+          {% if profile_user.profile.github_url %}
+          <p>
+            <strong>GitHub:</strong>
+            <a
+              href="{{ profile_user.profile.github_url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ profile_user.profile.github_url }}
+            </a>
+          </p>
+          {% endif %} {% if profile_user.profile.preferred_language %}
+          <p>
+            <strong>Preferred Language:</strong>
+            {{ profile_user.profile.preferred_language }}
+          </p>
+          {% endif %}
+        </div>
+
+        {% if user == profile_user %}
+        <div class="profile-actions">
+          <a href="{% url 'edit_profile' %}">Edit Profile</a>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Repository Section (Right) -->
+      <div class="repository-container">
+        <h2>Repositories</h2>
+
+        {% if groups %}
+        <div class="repositories">
+          {% for group in groups %}
+          <div class="repo-card">
+            <div class="repo-name">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M2.5 8.95h5.6a6 6 0 0 1 4.3-1.74c1.5 0 2.93.4 4.2 1.15"
+                ></path>
+                <circle cx="13" cy="10" r="8"></circle>
+                <path d="M18.53 14.87a2.41 2.41 0 0 1-1.07 2.27L14.9 19"></path>
+              </svg>
+              {{ group.name }}
+            </div>
+            <div class="repo-info">
+              Collaborative coding workspace for {{ group.name }} project
+            </div>
+            <div class="repo-meta">
+              <div class="repo-meta-item">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 12a5 5 0 0 0 5 5c.3 0 .6 0 .9-.1"></path>
+                  <path d="M9 15c.3 0 .6 0 .9-.1a5 5 0 0 0 3.2-2"></path>
+                  <path d="M12 7.5a5 5 0 0 0-9.8 1.5"></path>
+                  <path d="M20 16.5a5 5 0 0 0-9.7-1.6"></path>
+                  <path d="M15 10.5a5 5 0 0 0 3.1 8.4c.3 0 .5 0 .8-.1"></path>
+                  <path d="M18 8.5c.3 0 .5 0 .8-.1a5 5 0 0 0 3.1-4.9"></path>
+                </svg>
+                {{ group.created_at|date:"M d, Y" }}
+              </div>
+              <div class="repo-meta-item">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Collaborators
+              </div>
+            </div>
+            <a href="{% url 'group_view' group_name=group.name %}"
+              >Open Repository</a
+            >
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-repos">
+          <p>No repositories available yet.</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2024 PenCode. All rights reserved.</p>
+    </div>
+  </body>
+</html>
