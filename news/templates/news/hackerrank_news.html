@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HackerRank News</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* General Page Styles */
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #121420;
+        color: #cdd6f4;
+        overflow-x: hidden;
+        height: 100vh;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      /* Enhanced Navbar Styles */
+      .navbar {
+        background: rgba(30, 33, 50, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(122, 162, 247, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .navbar:hover {
+        border-bottom-color: rgba(122, 162, 247, 0.2);
+      }
+
+      .logo a {
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: #7aa2f7;
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+        padding: 0.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .logo a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, #7aa2f7, transparent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+
+      .logo a:hover {
+        text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
+      }
+
+      .logo a:hover::after {
+        transform: scaleX(1);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: #a9b1d6;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        background: transparent;
+      }
+
+      .nav-links a::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: #7aa2f7;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #7aa2f7;
+        background: rgba(122, 162, 247, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .nav-links a:hover::before {
+        width: 80%;
+      }
+
+      /* HackerRank News Specific Styles */
+      .hackerrank-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+      }
+
+      .hackerrank-container h1 {
+        font-size: 2.5rem;
+        color: #7aa2f7;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .hackerrank-container h1::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, #7aa2f7, transparent);
+      }
+
+      .search-container {
+        margin-bottom: 2rem;
+      }
+
+      #searchInput {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 8px;
+        border: 1px solid rgba(122, 162, 247, 0.3);
+        background-color: #1a1b26;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+      #searchInput:focus {
+        outline: none;
+        border-color: #7aa2f7;
+        box-shadow: 0 0 5px rgba(122, 162, 247, 0.5);
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .news-item {
+        background: rgba(30, 33, 50, 0.6);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(122, 162, 247, 0.1);
+      }
+
+      .news-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(122, 162, 247, 0.15);
+        border-color: rgba(122, 162, 247, 0.3);
+      }
+
+      .news-item h3 {
+        color: #7aa2f7;
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+
+      .news-description {
+        color: #cdd6f4;
+        margin-bottom: 1rem;
+      }
+
+      .news-meta {
+        display: flex;
+        justify-content: space-between;
+        color: #a9b1d6;
+        font-size: 0.8rem;
+        margin: 1rem 0;
+      }
+
+      .news-link {
+        color: #7aa2f7;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .news-link:hover {
+        color: #a9b1d6;
+      }
+
+      .loading-spinner {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 3rem;
+        font-size: 1.2rem;
+        color: #7aa2f7;
+      }
+
+      .error-message {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 3rem;
+        color: #f7768e;
+      }
+
+      /* Footer Styles */
+      .footer {
+        background-color: #1e2132;
+        color: #a9b1d6;
+        padding: 2rem 1rem;
+        text-align: center;
+        position: relative;
+        margin-top: 3rem;
+      }
+
+      .footer p {
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .footer a {
+        color: #7aa2f7;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      .footer a:hover {
+        color: #a9b1d6;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .hackerrank-container h1 {
+          font-size: 2.2rem;
+        }
+
+        .news-grid {
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 1.5rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 1rem;
+        }
+
+        .hackerrank-container {
+          padding: 0 1rem;
+        }
+
+        .hackerrank-container h1 {
+          font-size: 1.8rem;
+        }
+
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/">PenCode</a>
+      </div>
+      <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'hackerrank_news' %}" class="active">News</a>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'profile_view' %}">Profile</a>
+        <a href="{% url 'group-list' %}">Workspaces</a>
+{% endif %}
+      </div>
+    </nav>
+
+    <div class="hackerrank-container">
+      <h1>HackerRank Coding News</h1>
+
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search news..." />
+      </div>
+
+      <div id="newsContainer" class="news-grid">
+        <!-- News items will be inserted here by JavaScript -->
+        <div class="loading-spinner">Loading...</div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        &copy; 2025 PenCode. Built with love for developers.
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+      </p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const newsContainer = document.getElementById("newsContainer");
+        const searchInput = document.getElementById("searchInput");
+        let newsData = [];
+
+        // Fetch news from Hacker News API
+        async function fetchNews() {
+          try {
+            // Using Hacker News API - no API key required
+            // Fetch top stories from Hacker News
+            const topStoriesResponse = await fetch(
+              "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
+            );
+
+            if (!topStoriesResponse.ok) {
+              throw new Error("Failed to fetch top stories");
+            }
+
+            const topStoryIds = await topStoriesResponse.json();
+            // Get the first 10 stories
+            const storyIds = topStoryIds.slice(0, 10);
+
+            // Fetch details for each story
+            const storiesPromises = storyIds.map((id) =>
+              fetch(
+                `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
+              ).then((res) => res.json())
+            );
+
+            const stories = await Promise.all(storiesPromises);
+
+            // Format the stories to match our expected data structure
+            const formattedStories = stories.map((story, index) => {
+              return {
+                id: story.id || index,
+                title: story.title || "Untitled Story",
+                description:
+                  story.text ||
+                  `Discussion with ${
+                    story.descendants || 0
+                  } comments. Click to read more.`,
+                date: story.time
+                  ? new Date(story.time * 1000).toISOString().split("T")[0]
+                  : new Date().toISOString().split("T")[0],
+                source: story.by || "Anonymous",
+                url:
+                  story.url ||
+                  `https://news.ycombinator.com/item?id=${story.id}`,
+              };
+            });
+
+            return formattedStories;
+          } catch (error) {
+            console.error("Error fetching news:", error);
+            // If there's any error, fall back to sample data
+            return getSampleData();
+          }
+        }
+
+        // Sample data for testing
+        function getSampleData() {
+          return [
+            {
+              id: 1,
+              title: "New Algorithms Competition Announced",
+              description:
+                "HackerRank launches a new competition focusing on advanced algorithms and data structures.",
+              date: "2025-05-10",
+              source: "HackerRank Blog",
+              url: "https://example.com/news/1",
+            },
+            {
+              id: 2,
+              title: "Python 3.12 Features Showcase",
+              description:
+                "A series of challenges to demonstrate the new features in Python 3.12.",
+              date: "2025-05-08",
+              source: "Tech News",
+              url: "https://example.com/news/2",
+            },
+            {
+              id: 3,
+              title: "Web Development Trends Challenge",
+              description:
+                "Test your skills with the latest web development practices and tools.",
+              date: "2025-05-05",
+              source: "HackerRank",
+              url: "https://example.com/news/3",
+            },
+            {
+              id: 4,
+              title: "Machine Learning Contest Results",
+              description:
+                "See the winners of the latest ML prediction challenge and their approaches.",
+              date: "2025-05-01",
+              source: "AI News",
+              url: "https://example.com/news/4",
+            },
+            {
+              id: 5,
+              title: "New JavaScript Certification Available",
+              description:
+                "Earn your JavaScript expertise certification with our new comprehensive test.",
+              date: "2025-04-25",
+              source: "HackerRank",
+              url: "https://example.com/news/5",
+            },
+            {
+              id: 6,
+              title: "Coding Interview Preparation Week",
+              description:
+                "Join our week-long event to sharpen your coding interview skills.",
+              date: "2025-04-20",
+              source: "Tech Careers",
+              url: "https://example.com/news/6",
+            },
+          ];
+        }
+
+        // Render news items to the DOM
+        function renderNews(items) {
+          newsContainer.innerHTML = "";
+
+          if (items.length === 0) {
+            newsContainer.innerHTML =
+              '<div class="error-message">No news items found matching your search.</div>';
+            return;
+          }
+
+          items.forEach((item) => {
+            const newsItem = document.createElement("div");
+            newsItem.className = "news-item";
+
+            const formattedDate = new Date(item.date).toLocaleDateString();
+
+            newsItem.innerHTML = `
+              <h3>${item.title}</h3>
+              <p class="news-description">${item.description}</p>
+              <div class="news-meta">
+                <span>${formattedDate}</span>
+                <span>${item.source}</span>
+              </div>
+              <a href="${item.url}" target="_blank" class="news-link">
+                Read More <i class="ri-external-link-line"></i>
+              </a>
+            `;
+
+            newsContainer.appendChild(newsItem);
+          });
+        }
+
+        // Filter news based on search input
+        function filterNews() {
+          const searchTerm = searchInput.value.toLowerCase();
+
+          const filteredItems = newsData.filter(
+            (item) =>
+              item.title.toLowerCase().includes(searchTerm) ||
+              item.description.toLowerCase().includes(searchTerm)
+          );
+
+          renderNews(filteredItems);
+        }
+
+        // Initialize the page
+        async function init() {
+          newsData = await fetchNews();
+          renderNews(newsData);
+
+          searchInput.addEventListener("input", filterNews);
+        }
+
+        init();
+      });
+    </script>
+  </body>
+</html>

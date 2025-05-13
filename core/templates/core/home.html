@@ -451,6 +451,7 @@
       <div class="nav-links">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'group-list' %}">Workspaces</a>
+        <a href="{% url 'hackerrank_news' %}">News</a>
         {% if request.user.is_authenticated %}
         <a href="{% url 'profile_view' %}">Profile</a>
         <a href="{% url 'logout' %}">Logout</a>
